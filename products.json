@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Grit & Glow: Complete Digital Boss Kit",
+    "sku": "GG-BOSSKIT-001",
+    "price": 14.97,
+    "badge": "Bestseller",
+    "summary": "All-in-one planner + finance + mindset system in warm earth tones.",
+    "description": "Includes daily/weekly/monthly planners, finance pages (bill tracker, sinking funds), mindset pages (affirmations, prompts), and a financial dashboard. Minimal, warm earth tones.",
+    "images": [
+      "assets/hero-placeholder.png"
+    ],
+    "payhip_url": "https://payhip.com/your-store/your-product",
+    "tags": [
+      "planner",
+      "digital download",
+      "canva template",
+      "finance",
+      "dashboard"
+    ],
+    "files_included": [
+      "PDF",
+      "Canva share link",
+      "PNGs"
+    ],
+    "license": "Personal use only (no resell)."
+  }
+]

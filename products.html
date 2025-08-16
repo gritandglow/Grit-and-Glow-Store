@@ -1,0 +1,57 @@
+
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Products — Grit & Glow</title>
+<link rel="icon" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body><div class="wrap">
+<header>
+  <div class="brand">
+    <div class="logo">Grit &amp; Glow</div>
+    <div class="tag">clean • warm • motivating</div>
+  </div>
+  <nav style="margin-top:8px">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="refunds.html">Refunds</a>
+    <a href="terms.html">Terms</a>
+    <a href="privacy.html">Privacy</a>
+  </nav>
+</header>
+
+<section>
+  <h1 style="font-family:'Playfair Display',serif">Products</h1>
+  <input id="q" placeholder="Search products..." style="padding:10px;border-radius:10px;border:1px solid var(--line);width:100%;max-width:420px">
+  <div class="grid" id="grid"></div>
+</section>
+
+<footer><div>&copy; <span id="y"></span> Grit &amp; Glow.</div></footer>
+</div>
+<script>
+  document.getElementById('y').textContent=new Date().getFullYear();
+  let all=[]; const grid=document.getElementById('grid'); const q=document.getElementById('q');
+  const render=(list)=>{
+    grid.innerHTML='';
+    list.forEach(p=>{
+      const el=document.createElement('a');
+      el.className='card'; el.href=p.payhip_url; el.target='_blank'; el.rel='noopener';
+      el.innerHTML=`<img src="${p.images[0]}" alt="${p.title}">
+        <div class="badge">${p.badge||''}</div>
+        <h3>${p.title}</h3>
+        <div class="price">$${p.price.toFixed(2)}</div>
+        <p>${p.summary}</p>
+        <div style="margin-top:auto;font-weight:600">Buy on Payhip →</div>`;
+      grid.appendChild(el);
+    });
+  };
+  fetch('products.json').then(r=>r.json()).then(items=>{ all=items; render(all); });
+  q.addEventListener('input',()=>{
+    const s=q.value.toLowerCase();
+    render(all.filter(p=>[p.title,p.summary,(p.tags||[]).join(' ')].join(' ').toLowerCase().includes(s)));
+  });
+</script>
+</body></html>

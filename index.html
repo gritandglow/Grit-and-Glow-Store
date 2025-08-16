@@ -1,0 +1,66 @@
+
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Grit & Glow — Digital Planners & Templates</title>
+<meta name="description" content="Planner templates, finance trackers, and mindset tools. Minimal, earth-toned designs.">
+<link rel="icon" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body><div class="wrap">
+<header>
+  <div class="brand">
+    <div class="logo">Grit &amp; Glow</div>
+    <div class="tag">clean • warm • motivating</div>
+  </div>
+  <nav style="margin-top:8px">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="refunds.html">Refunds</a>
+    <a href="terms.html">Terms</a>
+    <a href="privacy.html">Privacy</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div>
+    <h1>Digital planners that keep you calm ✨</h1>
+    <p>Minimal layouts, warm earth tones, and just enough structure to stay on track—without the overwhelm. Use in Canva, GoodNotes, or print at home.</p>
+    <div class="cta">
+      <a class="btn primary" href="products.html">Shop the Digital Boss Kit</a>
+      <a class="btn ghost" href="products.html">Browse All Templates</a>
+    </div>
+    <p class="notice">Secure checkout & digital delivery handled by Payhip.</p>
+  </div>
+  <img class="sunburst" src="assets/hero-placeholder.png" alt="Product mockup placeholder">
+</section>
+
+<section>
+  <h2 style="font-family:'Playfair Display',serif;font-size:28px;margin:14px 0 8px">Featured</h2>
+  <div class="grid" id="featured"></div>
+</section>
+
+<footer>
+  <div>&copy; <span id="y"></span> Grit &amp; Glow. All rights reserved.</div>
+</footer>
+</div>
+<script>
+  document.getElementById('y').textContent=new Date().getFullYear();
+  fetch('products.json').then(r=>r.json()).then(items=>{
+    const grid=document.getElementById('featured');
+    items.slice(0,3).forEach(p=>{
+      const el=document.createElement('a');
+      el.className='card'; el.href=p.payhip_url; el.target='_blank'; el.rel='noopener';
+      el.innerHTML=`<img src="${p.images[0]}" alt="${p.title}">
+        <div class="badge">${p.badge||''}</div>
+        <h3>${p.title}</h3>
+        <div class="price">$${p.price.toFixed(2)}</div>
+        <p>${p.summary}</p>
+        <div style="margin-top:auto;font-weight:600">View →</div>`;
+      grid.appendChild(el);
+    });
+  });
+</script>
+</body></html>
